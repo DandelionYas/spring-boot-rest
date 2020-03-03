@@ -24,6 +24,10 @@ public class SurveyController {
     public ResponseEntity<Void> addQuestionToSurvey(@PathVariable String surveyId,
                                               @RequestBody Question newQuestion) {
         Question question = surveyService.addQuestion(surveyId, newQuestion);
+        if(question == null) {
+            return ResponseEntity.noContent().build();
+        }
+
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(question.getId()).toUri();
 
