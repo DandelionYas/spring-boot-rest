@@ -1,0 +1,5 @@
+We can overwrite properties values in spring boot by the following options:
+    1- VM Option:
+            -Dspring.profiles.active=dev
+    2- Program arguments:
+            --welcome2.message="Second welcome message from program argument."
