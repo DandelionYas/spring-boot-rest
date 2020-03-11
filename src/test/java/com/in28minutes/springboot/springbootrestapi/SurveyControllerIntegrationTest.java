@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.springframework.test.util.AssertionErrors.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class SurveyControllerIntegrationTest {
@@ -34,7 +34,7 @@ class SurveyControllerIntegrationTest {
         HttpEntity entitiy = new HttpEntity<String>(null, httpHeaders);
         ResponseEntity<String> response = testRestTemplate.exchange(
                 createUrl("/surveys/Survey1/questions/Question1"), HttpMethod.GET, entitiy, String.class);
-        assertTrue("Does not contain expected response", response.getBody().contains("\"id\":\"Question1\""));
+        assertTrue(response.getBody().contains("\"id\":\"Question1\""));
         String expected = "{id:Question1, description:\"Largest Country in the World\", correctAnswer:Russia}";
         JSONAssert.assertEquals(expected, response.getBody(), false);
     }
@@ -49,7 +49,7 @@ class SurveyControllerIntegrationTest {
         Question question = new Question("Question1",
                 "Largest Country in the World", "Russia", Arrays.asList(
                 "India", "Russia", "United States", "China"));
-        assertTrue("Does not contain expected response", response.getBody().contains(question));
+        assertTrue(response.getBody().contains(question));
     }
 
     @Test
@@ -62,7 +62,7 @@ class SurveyControllerIntegrationTest {
                 createUrl("/surveys/Survey1/questions"),
                 HttpMethod.POST, entitiy, String.class);
         String actualLocation = response.getHeaders().get(HttpHeaders.LOCATION).get(0);
-        assertTrue("Does not contain expected response", actualLocation.contains("/surveys/Survey1/questions"));
+        assertTrue(actualLocation.contains("/surveys/Survey1/questions"));
     }
 
     private String createUrl(String url) {
