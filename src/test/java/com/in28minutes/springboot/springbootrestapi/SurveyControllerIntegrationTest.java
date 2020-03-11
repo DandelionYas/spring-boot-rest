@@ -17,7 +17,7 @@ import java.util.List;
 import static org.springframework.test.util.AssertionErrors.assertTrue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class SpringBootRestApiApplicationTests {
+class SurveyControllerIntegrationTest {
 
     @LocalServerPort
     private Integer port;
@@ -57,7 +57,7 @@ class SpringBootRestApiApplicationTests {
         HttpHeaders httpHeaders = new HttpHeaders();
         Question question = new Question("DOESN'T MATTER", "Smallest Number",
                 "1", Arrays.asList("1", "2", "3", "4"));
-        HttpEntity entitiy = new HttpEntity<Question>(question, httpHeaders);
+        HttpEntity entitiy = new HttpEntity<>(question, httpHeaders);
         ResponseEntity<String> response = testRestTemplate.exchange(
                 createUrl("/surveys/Survey1/questions"),
                 HttpMethod.POST, entitiy, String.class);
