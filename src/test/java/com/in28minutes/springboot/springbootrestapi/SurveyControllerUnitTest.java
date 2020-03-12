@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpHeaders;
@@ -27,6 +28,7 @@ import java.util.Arrays;
 * It would not do component scan and would not create all beans
 */
 @WebMvcTest(SurveyController.class)
+@AutoConfigureMockMvc(addFilters = false)//Disable spring security in unit testing
 class SurveyControllerUnitTest {
     @MockBean
     private SurveyService surveyService;

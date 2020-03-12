@@ -22,9 +22,9 @@ public class SurveyController {
 
     @PostMapping("/surveys/{surveyId}/questions")
     public ResponseEntity<Void> addQuestionToSurvey(@PathVariable String surveyId,
-                                              @RequestBody Question newQuestion) {
+                                                    @RequestBody Question newQuestion) {
         Question question = surveyService.addQuestion(surveyId, newQuestion);
-        if(question == null) {
+        if (question == null) {
             return ResponseEntity.noContent().build();
         }
 
